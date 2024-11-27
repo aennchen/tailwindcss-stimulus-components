@@ -57,6 +57,16 @@ describe('TabsController', () => {
       expect(window.location.href.includes('#first')).to.equal(true)
     })
 
+    it('does not append to location href when use-anchor is false', async () => {
+      const anchorTabCtrlr = document.querySelector("[data-tabs-update-anchor-value='false']")
+      const tab = anchorTabCtrlr.querySelector('#first_no_anchor')
+
+      tab.click()
+      await nextFrame()
+
+      expect(window.location.href.includes('#first_no_anchor')).to.equal(false)
+    })
+
     it('applies active class when when data-id node is clicked', async () => {
       const anchorTabCtrlr = document.querySelector("[data-tabs-update-anchor-value='true']")
       const btn = anchorTabCtrlr.querySelector("[data-id='second']")
